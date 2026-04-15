@@ -13,15 +13,16 @@ if (empty($_SESSION["user_id"])) {
     ?>
     <html lang="en">
 
-<body>
-    <main class="container restricted text-center">
-        <h1> Sorry, you must be logged into view this content! </h1>
-        <a href="login.php" class="btn btn-primary"> Log In Here! </a>
-    </main>
-</body>
+        <body>
+            <main class="container restricted text-center">
+                <h1> Sorry, you must be logged into view this content! </h1>
+                <a href="login.php" class="btn btn-primary"> Log In Here! </a>
+            </main>
+        </body>
 
-</html>
+    </html>
 <?php
+exit();
 }
-    exit();
+
 //require auth.php on all pages that are restricted to registered users only 
