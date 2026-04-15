@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if (empty($errors)) {
-        $sql = "INSERT INTO images (image_path, title)
+        $sql = "INSERT INTO finalDB (image_path, title)
                 VALUES (:image_path, :title)";
 
         $stmt = $pdo->prepare($sql);
