@@ -1,9 +1,11 @@
 <?php
+// Session start and connect
 require_once "includes/connect.php";
 session_start();
 
 $error = "";
 
+// Process for log in info
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $usernameOrEmail = trim($_POST['username_or_email'] ?? '');
     $password = $_POST['password'] ?? '';
@@ -11,6 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($usernameOrEmail === '' || $password === '') {
         $error = "Username/email and password are required.";
     } else {
+        // If good, excecute to users(final) db
         $sql = "SELECT id, username, email, password
                 FROM usersFinal
                 WHERE username = :login OR email = :login
@@ -21,6 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
+        // Start session
         if ($user && password_verify($password, $user['password'])) {
             session_regenerate_id(true);
 
@@ -34,8 +38,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 }
-?>
 
+// The form for users to log in
+?>
 <main class="container mt-4">
     <h2>Login</h2>
 

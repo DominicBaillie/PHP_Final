@@ -1,4 +1,5 @@
 <?php
+// Require and declarations
 require_once "includes/connect.php";
 $errors = [];
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -9,8 +10,9 @@ $delete = filter_input(INPUT_POST, 'delete', FILTER_SANITIZE_SPECIAL_CHARS);
 $id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
 
 $image_path = null;
-// Check if the form was submitted
+// If not deleting run process
 if (empty($delete)) {
+    // Send image to image folder
     if (!empty($_FILES['image_path']['name'])) {
         $targetDir = "uploads/";
         $fileName = basename($_FILES["image_path"]["name"]);
@@ -20,6 +22,7 @@ if (empty($delete)) {
         $image_path = $targetFile;
     }
 
+    // Sql excectute, add data to db
     if (empty($errors)) {
         $sql = "INSERT INTO finalDB (image_path, title) VALUES (:image_path, :title)";
 
