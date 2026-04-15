@@ -39,5 +39,6 @@ $images = $stmt->fetchAll();
             <br>
         <button type="submit" class="btn btn-primary">Delete Image</button>
     </form>
+    <a href="index.php" class="btn btn-secondary mt-3">Add New Image</a>
 
 </main>
