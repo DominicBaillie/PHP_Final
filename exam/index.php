@@ -8,19 +8,19 @@ $errors = [];
 // Check if the form was submitted
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    if (isset($_FILES['product_image']) && $_FILES['product_image']['error']  !== UPLOAD_ERR_NO_FILE) {
-        if ($_FILES['product_image']['error'] !== UPLOAD_ERR_OK) {
+    if (isset($_FILES['image_path']) && $_FILES['image_path']['error']  !== UPLOAD_ERR_NO_FILE) {
+        if ($_FILES['image_path']['error'] !== UPLOAD_ERR_OK) {
             $errors[] = "Error With Upload";
         } else { 
             $allowedType = ['image/jpeg', 'image/png', 'image/webp', 'image/jpg']; 
-            $detectedType = mime_content_type($_FILES['product_image']['tmp_name']);
+            $detectedType = mime_content_type($_FILES['image_path']['tmp_name']);
             if (!in_array($detectedType, $allowedType, true)) {
                 $errors[] = "Invalid File Type";
             } else {
-                $extension = pathinfo($_FILES['product_image']['name'], PATHINFO_EXTENSION);
+                $extension = pathinfo($_FILES['image_path']['name'], PATHINFO_EXTENSION);
                 $safeFilename = uniqid('product_', true) . '.' . strtolower($extension);
                 $destination = __DIR__ . '/uploads/' . $safeFilename;
-                if (move_uploaded_file($_FILES['product_image']['tmp_name'], $destination)) {
+                if (move_uploaded_file($_FILES['image_path']['tmp_name'], $destination)) {
                     $imagePath = 'uploads/' . $safeFilename;
                 } else {
                     $errors[] = "Upload Failed";
@@ -56,11 +56,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
     <?php endif; ?>
     <form method="post" enctype="multipart/form-data" class="mt-3">
-        <label for="product_image" class="form-label">Profile Image</label>
+        <label for="image_path" class="form-label">Profile Image</label>
         <input
             type="file"
-            id="product_image"
-            name="product_image"
+            id="image_path"
+            name="image_path"
             class="form-control mb-4"
             accept=".jpg,.jpeg,.png,.webp">
 
