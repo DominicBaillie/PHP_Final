@@ -16,18 +16,26 @@ $images = $stmt->fetchAll();
     <?php else: ?>
         <div class="row">
             <?php foreach ($images as $image): ?>
+                echo "<p><strong>ID:</strong> " . htmlspecialchars($image['id']) . "</p>";
+                echo "<p><strong>Title:</strong> " . htmlspecialchars($image['title']) . "</p>";
                 <div class="col-md-4 mb-4">
-                    <div class="card h-100">
-                        <?php if (!empty($image['image_path'])): ?>
-                            <img
-                                src="<?= htmlspecialchars($image['image_path']); ?>"
-                                class="card-img-top"
-                            >
-                        <?php endif; ?>
-                    </div>
+                    <?php if (!empty($image['image_path'])): ?>
+                        <img
+                            src="<?= htmlspecialchars($image['image_path']); ?>"
+                            class="card-img-top">
+                    <?php endif; ?>
                 </div>
             <?php endforeach; ?>
         </div>
     <?php endif; ?>
+    <form method="post" class="mt-3" action = "process.php">
+        <label class="form-label mt-3" for="current_position">Current Position</label>
+            <input class="form-control" type="text" id="id" name="id">
+
+            <label for= "delete" class="form-label">Delete</label>
+            <input type="checkbox" id="delete" name="delete">
+            <br>
+        <button type="submit" class="btn btn-primary">Delete Image</button>
+    </form>
 
 </main>
