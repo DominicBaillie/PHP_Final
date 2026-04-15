@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $error = "Username/email and password are required.";
     } else {
         $sql = "SELECT id, username, email, password
-                FROM users
+                FROM usersFinal
                 WHERE username = :login OR email = :login
                 LIMIT 1";
         $stmt = $pdo->prepare($sql);
@@ -54,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             class="form-control mb-3"
             required
         >
-        
+
         <label for="password" class="form-label">Password</label>
         <input
             type="password"

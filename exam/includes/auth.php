@@ -16,7 +16,7 @@ if (empty($_SESSION["user_id"])) {
 <body>
     <main class="container restricted text-center">
         <h1> Sorry, you must be logged into view this content! </h1>
-        <a href="login.php" class="btn btn-primary"> Back to Home Page </a>
+        <a href="login.php" class="btn btn-primary"> Log In Here! </a>
     </main>
 </body>
 
