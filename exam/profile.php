@@ -1,6 +1,7 @@
 <?php
 //challenge students to create independently initially */ 
-require "includes/connect.php";
+require_once "includes/connect.php";
+require_once "includes/auth.php";
 
 // Get all products, newest first
 $sql = "SELECT * FROM finalDB ORDER BY created_at DESC";
@@ -15,9 +16,10 @@ $images = $stmt->fetchAll();
         <p>No images to display.</p>
     <?php else: ?>
         <div class="row">
-            <?php foreach ($images as $image): ?>
+            <?php foreach ($images as $image): 
                 echo "<p><strong>ID:</strong> " . htmlspecialchars($image['id']) . "</p>";
                 echo "<p><strong>Title:</strong> " . htmlspecialchars($image['title']) . "</p>";
+                ?>
                 <div class="col-md-4 mb-4">
                     <?php if (!empty($image['image_path'])): ?>
                         <img

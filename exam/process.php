@@ -6,6 +6,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 }
 $title = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_SPECIAL_CHARS);
 $delete = filter_input(INPUT_POST, 'delete', FILTER_SANITIZE_SPECIAL_CHARS);
+$id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
 
 $image_path = null;
 // Check if the form was submitted
