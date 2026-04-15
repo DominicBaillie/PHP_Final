@@ -4,42 +4,6 @@ require_once "includes/connect.php";
 require_once "includes/auth.php";
 // Show the admin-style header/navigation
 // Array for validation errors
-$errors = [];
-// Check if the form was submitted
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-    if (isset($_FILES['image_path']) && $_FILES['image_path']['error']  !== UPLOAD_ERR_NO_FILE) {
-        if ($_FILES['image_path']['error'] !== UPLOAD_ERR_OK) {
-            $errors[] = "Error With Upload";
-        } else { 
-            $allowedType = ['image/jpeg', 'image/png', 'image/webp', 'image/jpg']; 
-            $detectedType = mime_content_type($_FILES['image_path']['tmp_name']);
-            if (!in_array($detectedType, $allowedType, true)) {
-                $errors[] = "Invalid File Type";
-            } else {
-                $extension = pathinfo($_FILES['image_path']['name'], PATHINFO_EXTENSION);
-                $safeFilename = uniqid('product_', true) . '.' . strtolower($extension);
-                $destination = __DIR__ . '/uploads/' . $safeFilename;
-                if (move_uploaded_file($_FILES['image_path']['tmp_name'], $destination)) {
-                    $imagePath = 'uploads/' . $safeFilename;
-                } else {
-                    $errors[] = "Upload Failed";
-                }
-            }
-        }
-    }
-
-    if (empty($errors)) {
-        $sql = "INSERT INTO finalDB (image_path, title)
-                VALUES (:image_path, :title)";
-
-        $stmt = $pdo->prepare($sql);
-        $stmt->bindParam(':image_path', $imagePath);
-        $stmt->execute();
-
-        $success = "Image Uploaded";
-    }
-}
 ?>
 
 <main class="container mt-4">
