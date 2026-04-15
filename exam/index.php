@@ -19,7 +19,7 @@ require_once "includes/auth.php";
             </ul>
         </div>
     <?php endif; ?>
-    <form method="post" enctype="multipart/form-data" class="mt-3">
+    <form method="post" enctype="multipart/form-data" class="mt-3" action = "process.php">
         <label for="image_path" class="form-label">Profile Image</label>
         <input
             type="file"
