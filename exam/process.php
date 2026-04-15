@@ -20,7 +20,7 @@ if (empty($errors)) {
     $sql = "INSERT INTO finalDB (image_path, title) VALUES (:image_path, :title)";
 
     $stmt = $pdo->prepare($sql);
-    $stmt->bindParam(':image_path', $imagePath);
+    $stmt->bindParam(':image_path', $image_path);
     $stmt->bindParam(':title', $title);
     $stmt->execute();
 
@@ -42,6 +42,7 @@ if (empty($errors)) {
         <main class="container mt-4">
             <h2>Information Submitted</h2>
             <p><strong>Thank you for submitting your image</strong></p>
+            <a href="profile.php">View Images</a>
             <main class="container mt-4">
         </main>
     </body>

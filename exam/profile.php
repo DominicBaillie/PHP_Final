@@ -9,8 +9,6 @@ $stmt->execute();
 $images = $stmt->fetchAll();
 ?>
 
-?>
-
 <main class="container mt-4">
     <h1 class="mb-4">Uploaded Images</h1>
     <?php if (empty($images)): ?>
