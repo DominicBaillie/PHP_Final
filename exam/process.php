@@ -32,14 +32,14 @@ if (empty($delete)) {
     }
 } elseif ($delete) {
     # Sql to delete on ID
-    $sql = "DELETE FROM resumes WHERE id = :id";
+    $sql = "DELETE FROM finalDB WHERE id = :id";
     $stmt = $pdo->prepare($sql);
     $stmt->bindParam(':id', $id, PDO::PARAM_INT);
     $stmt->execute();
 ?>
-    <h4>Resume Deleted:</h4>
+    <h4>Image Deleted:</h4>
     <p>ID: <?php echo $id; ?></p>
-    <a href="update.php">View Submissions</a>
+    <a href="profile.php">View Images</a>
 <?php
     exit;
 }
